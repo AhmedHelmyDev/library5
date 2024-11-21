@@ -1,0 +1,79 @@
+        <script>
+            // Check if the browser supports SpeechRecognition
+            var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Your browser does not support speech recognition.");
+                return;
+            }
+        
+            var recognition = new SpeechRecognition();
+            recognition.lang = 'ar-SA';  // Set the language to Arabic
+        
+            // Start recognition when the user speaks
+            recognition.onstart = function() {
+                console.log("Voice recognition activated.");
+            };
+        
+            // Capture the speech input
+            recognition.onresult = function(event) {
+                var transcript = event.results[0][0].transcript;  // Get the spoken text
+                console.log("Recognized: " + transcript);  // Log the recognized speech
+        
+                // Check the recognized speech and navigate to the corresponding book
+                if (transcript.includes("افتح كتاب الذكاء الاصطناعي") || transcript.includes("open ai book")) {
+                    console.log("Redirecting to AI book...");
+                    location.href = 'ai/1.html';  // Redirect to ai/1.html
+                } else if (transcript.includes("افتح كتاب البرمجه بلغة باسكال") || transcript.includes("open pascal programming book")) {
+                    console.log("Redirecting to Pascal Programming book...");
+                    location.href = 'ai/2.html';  // Redirect to ai/2.html
+                } else if (transcript.includes("افتح كتاب فجوال بيسك.نت")) {
+                    console.log("Redirecting to Visual Basic book...");
+                    location.href = 'ai/3.html';  // Redirect to ai/3.html
+                } else if (transcript.includes("افتح كتاب قاعة البحث العلمي")) {
+                    console.log("Redirecting to Scientific Research Hall book...");
+                    location.href = 'كتب%20لاعلام/1.html';  // Redirect to كتب%20لاعلام/1.html
+                } else if (transcript.includes("افتح كتاب المسرح التعليمي")) {
+                    console.log("Redirecting to Educational Theatre book...");
+                    location.href = 'كتب%20لاعلام/2.html';  // Redirect to كتب%20لاعلام/2.html
+                } else if (transcript.includes("افتح كتاب المسرح الحديث")) {
+                    console.log("Redirecting to Modern Theatre book...");
+                    location.href = 'كتب%20لاعلام/3.html';  // Redirect to كتب%20لاعلام/3.html
+                } else if (transcript.includes("افتح كتاب اهمية الفيتامينات")) {
+                    console.log("Redirecting to Vitamins Importance book...");
+                    location.href = 'اقتصاد/1.html';  // Redirect to اقتصاد/1.html
+                } else if (transcript.includes("افتح كتاب إدارة البيوت")) {
+                    console.log("Redirecting to House Management book...");
+                    location.href = 'اقتصاد/2.html';  // Redirect to اقتصاد/2.html
+                } else if (transcript.includes("افتح كتاب صناعة اللبان")) {
+                    console.log("Redirecting to Incense Production book...");
+                    location.href = 'اقتصاد/3.html';  // Redirect to اقتصاد/3.html
+                } else if (transcript.includes("افتح كتاب أسس التربية الفنية")) {
+                    console.log("Redirecting to Fundamentals of Art Education book...");
+                    location.href = 'فن/1.html';  // Redirect to فن/1.html
+                } else if (transcript.includes("افتح كتاب أساسيات رسم المنظور")) {
+                    console.log("Redirecting to Basics of Perspective Drawing book...");
+                    location.href = 'فن/2.html';  // Redirect to فن/2.html
+                } else if (transcript.includes("افتح كتاب رؤية حديثة للمشفولات")) {
+                    console.log("Redirecting to Modern View on Confections book...");
+                    location.href = 'فن/3.html';  // Redirect to فن/3.html
+                }
+            };
+        
+            // Handle errors in speech recognition
+            recognition.onerror = function(event) {
+                console.error("Speech recognition error", event.error);
+                alert("There was an error with speech recognition. Please try again.");
+            };
+        
+            // Handle end of recognition
+            recognition.onend = function() {
+                console.log("Speech recognition ended.");
+                alert("Speech recognition has stopped. You can try again.");
+            };
+        
+            // Start listening for speech as soon as the page is loaded
+            window.addEventListener('load', function() {
+                console.log("Starting speech recognition...");
+                recognition.start();  // Automatically start speech recognition when the page is loaded
+            });
+        </script>
